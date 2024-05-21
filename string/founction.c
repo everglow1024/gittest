@@ -2,6 +2,10 @@
 # include <assert.h>
 # include <string.h>
 
+// 字符串函数实现：
+// strcpy strcat strcmp;
+
+
 char* my_strcpy(char target[], char source[])
 {
     int i = 0;
@@ -68,7 +72,7 @@ int main()
     my_strcat(arr1, arr3);   //字符串追加；
     printf("my_strcat: %s\n", arr1);
 
-    printf("%d\n", my_strcmp(arr1, arr3));
+    // printf("%d\n", my_strcmp(arr1, arr3));
 
     return 0;
 }
