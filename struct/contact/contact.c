@@ -105,36 +105,59 @@ void display(struct contacter c[NUM])
     for (i = 0; i < NUM; i++)
     {
         if(strlen(c[i].name)!=0)
-            printf("%s %s %s %s %d\n",c[i].name,c[i].sex,c[i].phone,c[i].address,c[i].age);
+            printf("%s %s %s %s %d___%d \n",c[i].name,c[i].sex,c[i].phone,c[i].address,c[i].age, i);
     }
 }
 // 排序联系人
-void sort(struct contacter c[NUM])
+// void sort(struct contacter c[NUM])
+// {
+//     int i,j;
+//     struct contacter temp;
+//     for(i=0;i<NUM;i++)
+//     {
+//         for(j=0;j<NUM-i-1;j++)
+//         {
+//             if(strcmp(c[j].name, c[j+1].name)>0) //根据姓名排序
+//             {
+//                 temp=c[j];
+//                 c[j]=c[j+1];
+//                 c[j+1]=temp;
+//             }
+//         }
+//     }
+// }
+
+int compare_up(const void *a, const void *b)
 {
-    int i,j;
-    struct contacter temp;
-    for(i=0;i<NUM;i++)
-    {
-        for(j=0;j<NUM-i-1;j++)
-        {
-            if(strcmp(c[j].name, c[j+1].name)>0) //根据姓名排序
-            {
-                temp=c[j];
-                c[j]=c[j+1];
-                c[j+1]=temp;
-            }
-        }
-    }
-}
-void compore(const void *a, const void *b)
+    struct contacter *stu1 = (struct contacter *)a;
+    struct contacter *stu2 = (struct contacter *)b;
+    return strcmp(stu1->name, stu2->name);  //升序
+};
+
+int compare_down(const void *a, const void *b)
 {
-    
-}
+    struct contacter *stu1 = (struct contacter *)a;
+    struct contacter *stu2 = (struct contacter *)b;
+    return strcmp(stu2->name, stu1->name);  //降序
+};
 
 void sort(struct contacter c[NUM])
 {
-    int i,j;
-    struct contacter temp;
     // 用函数qsort实现
-    qsort(c, NUM, sizeof(struct contacter), compare);
+    int i=1;
+    printf("请选择你的排序方式\n");
+    printf("升序:1\n 降序:2\n");
+    scanf("%d", &i);
+    if (i == 1)
+    {
+        qsort(c, NUM, sizeof(struct contacter), compare_up);
+        return;
+    }
+    else if (i == 2)
+    {
+        qsort(c, NUM, sizeof(struct contacter), compare_down);
+        return;
+    }
 }
+// 在 qsort 函数中，如果比较函数 compare 返回负值，
+// 那么 qsort 将会把 stu1 排在 stu2 前面；如果返回正值，那么 stu1 将会排在 stu2 后面。

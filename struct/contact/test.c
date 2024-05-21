@@ -11,6 +11,17 @@ void print_init()
     printf("********************** 7.end ************************\n");
 }
 
+enum Opration  //
+{
+    ADD=1,
+    DELETE,
+    SEARCH,
+    MODIFY,
+    SORT,
+    DISPALY,
+    END
+};
+
 int main ()
 {
     struct contacter c[NUM] = {0};  //初始化
@@ -25,29 +36,29 @@ int main ()
 
         switch(input)
         {
-            case 1:
+            case ADD:
                 add(c);
                 display(c);
                 break;
-            case 2:
+            case DELETE:
                 delete_(c);
                 display(c);
                 break;
-            case 3:
+            case SEARCH:
                 search(c);
                 break;
-            case 4:
+            case MODIFY:
                 modify(c);
                 display(c);
                 break;
-            case 5:
+            case SORT:
                 sort(c);
                 display(c);
                 break;
-            case 6:
+            case DISPALY:
                 display(c);
                 break;
-            case 7:
+            case END:
                 continue_flag = 0;
                 break;
             default:
